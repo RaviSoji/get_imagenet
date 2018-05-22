@@ -16,7 +16,7 @@ Note: As of 2018,
 Example: 
  `n00017222` is a _label_ for the synset or concept 
  `[plant, flora, plant life]`.
-1. A _synset_ (\"synonym set\") is a list of words or phrases that
+1. A synset (\"synonym set\") is a list of words or phrases that
     can be substituted for one another in _some_ context.
 2. [WordNet](https://wordnet.princeton.edu/) maintains a database of 
     these synsets and assigns each synset a unique ID, i.e. label.
@@ -38,9 +38,11 @@ See the dataset [summary and statistics](http://image-net.org/about-stats).
 
 1. `./download_imagenet.sh unique_synsets.txt ./`
 2. `./preprocess_imagenet_validation_data.py lsvrc2012/validation_images/ validation_synset_labels.txt`
+3. extract bounding boxes and save them to a csv file.
+3. make a directory for the TFrecoreds.
 
 ## Project Structure
-The scripts and files listed below make it a lot easier to 
+The scripts and input files listed below make it a lot easier to 
  download, extract, and build the dataset in a useful format, 
  so you can focus on actual research.
 Most of them were provided by Google, Inc. in their 
@@ -52,17 +54,18 @@ Most of them were provided by Google, Inc. in their
 1. `download_and_uncompress.sh`:
     downloads and uncompresses the training and validation set "tarballs".
 2. `sort_validation_set.py`:
-    makes the validation set directory consistent with the training set.
+    makes the directory structure of the validation set 
+    consistent with the training set.
 3. `get_bounding_boxes.py`:
     extracts the bounding data from the XML files. 
     See `get_ilsvrc.sh` for usage.
 4. `build_tf_records.py`:
-    Builds TensorFlow records for speed up IO for model training.
+    builds TensorFlow records for speed up IO for model training.
 5. `get_ilsvrc.sh`:
-    If nothing is broken, this script lets the user download the dataset
+    if nothing is broken, this script lets the user download the dataset
      in usable format without having to understand the dataset details.
 
-### Files
+### Input Files
 1. `unique_synsets.txt`
   - Each of the 1000 lines contains a unique synset label.
   - They have the form `nXXXXXXXXXX`, e.g. `n01751748`.
@@ -77,3 +80,7 @@ Most of them were provided by Google, Inc. in their
      `ILSVRC2012_val_00000001.JPEG` to `ILSVRC2012_val_00050000.JPEG`.
 3. `synset_english_key.txt`
   - list of synset labels and the actual English synsets.
+
+
+### Output
+
