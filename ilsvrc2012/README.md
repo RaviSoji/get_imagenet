@@ -33,7 +33,7 @@ Example:
   -  _All_ concepts, i.e. synsets, are represented by 50 images.
 
 ### More Information
-- Make sure you have ~150-350GB of space on your computer.
+- Make sure you have ~150-450GB of space on your computer.
 - See the dataset [summary and statistics](http://image-net.org/about-stats).
 
 ## Download Instructions
