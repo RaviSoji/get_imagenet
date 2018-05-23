@@ -1,14 +1,17 @@
 # Downloading the ILSVRC2012 dataset
-Note: As of 2018, 
-       this has been the same dataset used for the annual ILSVRC 
-       object localization challenge since 2012.
+As of 2018, 
+ this has been the same dataset used for the annual ILSVRC 
+ object localization challenge since 2012.
 
-## Software Dependencies
+## Dependencies
+- Linux Ubuntu 16.04
 - python3.6
 - tar
 - wget
 - TensorFlow1.7.0 (optional: only necessary for creating TFRecords)
-  - I have only tested the script with TensorFlow1.7.0.
+
+The download has only been tested with the above,
+ though the scripts might work with other configurations.
 
 ## Dataset Overview
 
@@ -23,50 +26,73 @@ Example:
 3. These synset labels are used to label the images in ImageNet.
 
 ### Images
+- 1,000 synsets are used to label the images.
 - 1,283,166 images are in the training set.
   -  _Most_ concepts, i.e. synsets, are represented by 1300 images.
 - 50,000 images are in the validation set.
   -  _All_ concepts, i.e. synsets, are represented by 50 images.
-- 1,000 synsets are used to label the images.
 
 ### More Information
-See the dataset [summary and statistics](http://image-net.org/about-stats).
+- Make sure you have ~150-350GB of space on your computer.
+- See the dataset [summary and statistics](http://image-net.org/about-stats).
 
 ## Download Instructions
-1. Create an imagenet account at 
-    [http://www.image-net.org/](http://www.image-net.org/).
+### Easy installation 
+1. Create an ImageNet account at 
+    [http://www.image-net.org/](http://www.image-net.org/)
+    to obtain an ImageNet username and access key.
 2. cd into the directory containing this README.md file.
    ``` shell
    cd get_imagenet/ilsvrc2012/  # README.md should be in here.
    ```
-2. Set the environment variables with your ImageNet username and access key.
+3. Set the environment variables with your ImageNet username and access key.
     If you do not set these, the `download_and_uncompress.sh` script will
     prompt you to enter these on the command line.
    ``` shell
    IMAGENET_USERNAME=...  # Replace ... with the username.
    IMAGENET_ACCESS_KEY=...  # Replace ... with the access key.
    ```
-3. Download and uncompress the training and validation images into 
+4. Create the dataset directory in `get_imagenet/ilsvrc2012/`.
+   ```
+   get_ilsvrc2012.sh ./
+   ```
+
+### Custom installation
+1. Create an ImageNet account at 
+    [http://www.image-net.org/](http://www.image-net.org/)
+    to obtain an ImageNet username and access key.
+2. cd into the directory containing this README.md file.
+   ``` shell
+   cd get_imagenet/ilsvrc2012/  # README.md should be in here.
+   ```
+3. Set the environment variables with your ImageNet username and access key.
+    If you do not set these, the `download_and_uncompress.sh` script will
+    prompt you to enter these on the command line.
+   ``` shell
+   IMAGENET_USERNAME=...  # Replace ... with the username.
+   IMAGENET_ACCESS_KEY=...  # Replace ... with the access key.
+   ```
+4. Download and uncompress the training and validation images into 
     `.get_imagenet/ilsvrc2012/ilsvrc2012/`.
    ``` shell
    ./download_and_uncompress.sh \
      unique_synsets.txt \
      ./
    ```
-4. Rearrange the validation set directory to match the training set.
+5. Rearrange the validation set directory to match the training set.
    ``` shell
    sort_validation_set.py \
      lsvrc2012/validation_images/ \
      validation_synset_labels.txt
    ```
-5. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
+6. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
     with all the bounding box data.
    ``` shell
    ./get_bounding_boxes.py \
      ilsvrc2012/training_bounding_boxes/ \
      unique_synsets.txt > bounding_boxes.csv
    ```
-6. Optional: Create TensorFlow record files for fast IO during 
+7. Optional: Create TensorFlow record files for fast IO during 
     model training.
    ``` shell
    mkdir ilsvrc2012/tfrecords
@@ -106,7 +132,7 @@ Most of them were provided by Google, Inc. in their
 ### Input Files
 1. `unique_synsets.txt`
   - Each of the 1000 lines contains a unique synset label.
-  - They have the form `nXXXXXXXXXX`, e.g. `n01751748`.
+  - They have the form `nXXXXXXXX`, e.g. `n01751748`.
 2. `validation_synset_labels.txt`
   - Ground truth synset labels for the validation set images.
   - Each of the 50000 lines corresponds to a specific image: 

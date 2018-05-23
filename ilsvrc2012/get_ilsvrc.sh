@@ -16,10 +16,10 @@
 #
 # ONE Script Argument
 #  1. SAVE_DIR  # Where to create the directory to which data will be
-#       downloaded and uncompressed.
+#               #  downloaded and uncompressed.
 #
 # Script Outputs
-#  1. Script outputs are saved to a new directory called ilsvrc2012,
+#  1. Script outputs are saved to a new directory called `ilsvrc2012/`,
 #      which is saved at SAVE_DIR.
 #
 # Usage

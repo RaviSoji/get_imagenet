@@ -66,12 +66,12 @@ else
   BASE_SAVE_DIR="$2/ilsvrc2012/"
 fi
 
-# Check that BASE_SAVE_DIR does not already exist.
-if [ -e "$BASE_SAVE_DIR" ]
-then
-   printf "The following directory already exists:\n ${BASE_SAVE_DIR}\n"
-   exit 1  # Exit script if BASE_SAVE_DIR already exists.
-fi
+# # Check that BASE_SAVE_DIR does not already exist.
+# if [ -e "$BASE_SAVE_DIR" ]
+# then
+#    printf "The following directory already exists:\n ${BASE_SAVE_DIR}\n"
+#    exit 1  # Exit script if BASE_SAVE_DIR already exists.
+# fi
 
 # URLs for bounding boxes, training set images, and validation set images.
 BASE_URL="http://www.image-net.org/challenges/LSVRC/2012/nnoupb/"
