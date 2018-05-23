@@ -30,6 +30,18 @@
 
 set -e  # Exit script if any of the following commands fail.
 
+# Set IMAGENET_ACCESS_KEY and IMAGENET_USERNAME.
+if [ "x$IMAGENET_ACCESS_KEY" == x -o "x$IMAGENET_USERNAME" == x ]; then
+  cat <<END
+In order to download the imagenet data, you have to create an account with
+image-net.org. This will get you a username and an access key. You can set the
+IMAGENET_USERNAME and IMAGENET_ACCESS_KEY environment variables, or you can
+enter the credentials here.
+END
+  read -p "Username: " IMAGENET_USERNAME
+  read -p "Access key: " IMAGENET_ACCESS_KEY
+fi
+
 # Store the two script arguments into variables.
 SYNSETS_PATH="$1"
 
