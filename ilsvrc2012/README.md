@@ -28,18 +28,43 @@ See the dataset [summary and statistics](http://image-net.org/about-stats).
 ## Download Instructions
 1. Create an imagenet account at 
     [http://www.image-net.org/](http://www.image-net.org/).
-2. Choose the directory in which you want the dataset built.
-3. cd into the directory containing this README.md file.
-3. Created a CSV file called `bounding_boxes.csv` 
+2. cd into the directory containing this README.md file.
+   ```
+   cd get_imagenet/
+   ```
+2. Set the environment variables with your username and access key
+   ```
+   ```
+3. Download and uncompress the training and validation images into of
+    `./ilsvrc2012/`.
+   ```
+   ./download_and_uncompress.sh \
+     unique_synsets.txt \
+     ./
+   ```
+4. Rearrange the validation set directory to match the training set.
+   ```
+   sort_validation_set.py \
+     lsvrc2012/validation_images/ \
+     validation_synset_labels.txt
+   ```
+5. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
     with all the bounding box data.
-```
-./process_bounding_boxes.py ilsvrc2012/training_bounding_boxes/ unique_synsets.txt > bounding_boxes.csv
-```
-
-1. `./download_imagenet.sh unique_synsets.txt ./`
-2. `./preprocess_imagenet_validation_data.py lsvrc2012/validation_images/ validation_synset_labels.txt`
-3. extract bounding boxes and save them to a csv file.
-3. make a directory for the TFrecoreds.
+   ```
+   ./get_bounding_boxes.py ilsvrc2012/training_bounding_boxes/ unique_synsets.txt > bounding_boxes.csv
+   ```
+6. Optional: Create TensorFlow record files for fast IO during 
+    model training.
+   ```
+   mkdir ilsvrc2012/tfrecords
+   python3.6 build_tf_records.py \
+     --train_directory=ilsvrc2012/training_images/ \
+     --validation_directory=ilsvrc2012/validation_images/ \
+     --output_directory=ilsvrc2012/tfrecords/ \
+     --imagenet_metadata_file=synset_english_key.txt \
+     --labels_file=unique_synsets.txt \
+     --bounding_box_file=bounding_boxes.csv
+   ```
 
 ## Project Structure
 The scripts and input files listed below make it a lot easier to 
@@ -79,8 +104,17 @@ Most of them were provided by Google, Inc. in their
      filenames should range from 
      `ILSVRC2012_val_00000001.JPEG` to `ILSVRC2012_val_00050000.JPEG`.
 3. `synset_english_key.txt`
-  - list of synset labels and the actual English synsets.
-
+  - List of synset labels and the actual English synsets.
 
 ### Output
-
+Together, the scripts create a directory called `ilsvrc2012/` at the 
+ user specified directory, 
+ which is set to the current working directory by default.
+- `ilsvrc2012/training_images/`
+- `ilsvrc2012/validation_images/`
+- `ilsvrc2012/training_bounding_boxes/`
+- `ilsvrc2012/tfrecords/`
+- `ilsvrc2012/training_bbox_annotations.tar.gz`
+- `ilsvrc2012/training_images.tar`
+- `ilsvrc2012/validation_images.tar`
+- `ilsvrc2012/bounding_boxes.csv`
