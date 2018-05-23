@@ -124,7 +124,7 @@ Most of them were provided by Google, Inc. in their
     extracts the bounding data from the XML files. 
     See `get_ilsvrc.sh` for usage.
 4. `build_tf_records.py`:
-    builds TensorFlow records for speed up IO for model training.
+    builds TensorFlow records to speed up IO for model training.
 5. `get_ilsvrc.sh`:
     if nothing is broken, this script lets the user download the dataset
      in usable format without having to understand the dataset details.
