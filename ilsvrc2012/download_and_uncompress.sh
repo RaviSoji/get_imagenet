@@ -17,15 +17,15 @@
 #  2. SAVE_DIR  (optional): Where to create the 'ilscvrc2012/' output.
 #
 # ONE Script Output
-#  1. 'ilscvrc2012/' saved to SAVE_DIR/ or current working directory.
+#  1. 'ilscvrc2012/' is saved to SAVE_DIR/ or current working directory.
 #
 # Script Usage
 #  $ cd [path to this script]
-#  $ ./download_imagenet.sh [synsets file] [directory]
+#  $ ./download_and_uncompress.sh [unique synsets txt file] [directory]
 #
 # Example of Script Usage
-#  $ cd models/research/inception/inception/data/
-#  $ ./download_imagenet.sh imagenet_lsvrc_2015_synsets.txt ./
+#  $ cd get_imagenet/ilsvrc2012/  # README.md is here.
+#  $ ./download_and_uncompress.sh unique_synsets.txt ./
 #
 # Notes on Usage
 #  1. Obtain a username and access_key, by registering at image-net.org.
@@ -91,26 +91,26 @@ mkdir -p "${TRAIN_IMGS_SAVE_DIR}"
 mkdir -p "${VALIDATION_IMGS_SAVE_DIR}"
 
 # Assign specific names to the tarballs being downloaded.
-TRAIN_BBOX_SAVE_PATH="${BASE_SAVE_DIR}training_bounding_boxes.tar.gz"
-TRAIN_IMGS_SAVE_PATH="${BASE_SAVE_DIR}training_images.tar"
-VALIDATION_IMGS_SAVE_PATH="${BASE_SAVE_DIR}validation_images.tar"
+TRAIN_BBOX_TAR_SAVE_PATH="${BASE_SAVE_DIR}training_bounding_boxes.tar.gz"
+TRAIN_IMGS_TAR_SAVE_PATH="${BASE_SAVE_DIR}training_images.tar"
+VALIDATION_IMGS_TAR_SAVE_PATH="${BASE_SAVE_DIR}validation_images.tar"
 
 # Download data.
 echo "Downloading bounding box annotations for training images ..."
-wget -nd -c "${TRAIN_BBOX_URL}" -O "${TRAIN_BBOX_SAVE_PATH}"
+wget -nd -c "${TRAIN_BBOX_URL}" -O "${TRAIN_BBOX_TAR_SAVE_PATH}"
 
 echo "Downloading validation set images."
-wget -nd -c "${VALIDATION_IMGS_URL}" -O "${VALIDATION_IMGS_SAVE_PATH}"
+wget -nd -c "${VALIDATION_IMGS_URL}" -O "${VALIDATION_IMGS_TAR_SAVE_PATH}"
 
 echo "Downloading training set images."
-wget -nd -c "${TRAIN_IMGS_URL}" -O "${TRAIN_IMGS_SAVE_PATH}"
+wget -nd -c "${TRAIN_IMGS_URL}" -O "${TRAIN_IMGS_TAR_SAVE_PATH}"
 
 # Uncompress data.
 echo "Uncompressing bounding box annotations for training images ..."
-tar xzf "${TRAIN_BBOX_SAVE_PATH}" -C "${TRAIN_BBOX_SAVE_DIR}"
+tar xzf "${TRAIN_BBOX_TAR_SAVE_PATH}" -C "${TRAIN_BBOX_SAVE_DIR}"
 
 echo "Uncompressing validation set images ..."
-tar xf "${VALIDATION_IMGS_SAVE_PATH}" -C "${VALIDATION_IMGS_SAVE_DIR}"
+tar xf "${VALIDATION_IMGS_TAR_SAVE_PATH}" -C "${VALIDATION_IMGS_SAVE_DIR}"
 
 echo "Uncompressing training set images ..."
 while read SYNSET; do
@@ -121,7 +121,7 @@ while read SYNSET; do
   rm -rf "${TRAIN_IMGS_SAVE_DIR}/${SYNSET}/*"
 
   # Uncompress into the directory.
-  tar xf "${TRAIN_IMGS_SAVE_PATH}" "${SYNSET}.tar"
+  tar xf "${TRAIN_IMGS_TAR_SAVE_PATH}" "${SYNSET}.tar"
   tar xf "${SYNSET}.tar" -C "${TRAIN_IMGS_SAVE_DIR}/${SYNSET}/"
   rm -f "${SYNSET}.tar"
 

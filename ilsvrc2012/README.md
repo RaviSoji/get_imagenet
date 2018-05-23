@@ -36,37 +36,39 @@ See the dataset [summary and statistics](http://image-net.org/about-stats).
 1. Create an imagenet account at 
     [http://www.image-net.org/](http://www.image-net.org/).
 2. cd into the directory containing this README.md file.
-   ```
-   cd get_imagenet/
+   ``` shell
+   cd get_imagenet/ilsvrc2012/  # README.md should be in here.
    ```
 2. Set the environment variables with your ImageNet username and access key.
     If you do not set these, the `download_and_uncompress.sh` script will
     prompt you to enter these on the command line.
-   ```
+   ``` shell
    IMAGENET_USERNAME=...  # Replace ... with the username.
    IMAGENET_ACCESS_KEY=...  # Replace ... with the access key.
    ```
-3. Download and uncompress the training and validation images into of
-    `./ilsvrc2012/`.
-   ```
+3. Download and uncompress the training and validation images into 
+    `.get_imagenet/ilsvrc2012/ilsvrc2012/`.
+   ``` shell
    ./download_and_uncompress.sh \
      unique_synsets.txt \
      ./
    ```
 4. Rearrange the validation set directory to match the training set.
-   ```
+   ``` shell
    sort_validation_set.py \
      lsvrc2012/validation_images/ \
      validation_synset_labels.txt
    ```
 5. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
     with all the bounding box data.
-   ```
-   ./get_bounding_boxes.py ilsvrc2012/training_bounding_boxes/ unique_synsets.txt > bounding_boxes.csv
+   ``` shell
+   ./get_bounding_boxes.py \
+     ilsvrc2012/training_bounding_boxes/ \
+     unique_synsets.txt > bounding_boxes.csv
    ```
 6. Optional: Create TensorFlow record files for fast IO during 
     model training.
-   ```
+   ``` shell
    mkdir ilsvrc2012/tfrecords
    python3.6 build_tf_records.py \
      --train_directory=ilsvrc2012/training_images/ \
@@ -128,4 +130,4 @@ Together, the scripts create a directory called `ilsvrc2012/` at the
 - `ilsvrc2012/training_bbox_annotations.tar.gz`
 - `ilsvrc2012/training_images.tar`
 - `ilsvrc2012/validation_images.tar`
-- `ilsvrc2012/bounding_boxes.csv`
+- `bounding_boxes.csv`
