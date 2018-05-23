@@ -12,13 +12,6 @@ Note: As of 2018,
 
 ## Dataset Overview
 
-### Images
-- 1,283,166 images are in the training set.
-  -  _Most_ concepts, i.e. synsets, are represented by 1300 images.
-- 50,000 images are in the validation set.
-  -  _All_ concepts, i.e. synsets, are represented by 50 images.
-- 1,000 synsets are used to label the images.
-
 ### Synset (\"Concept\") Labels
 Example: 
  `n00017222` is a _label_ for the synset or concept 
@@ -28,6 +21,13 @@ Example:
 2. [WordNet](https://wordnet.princeton.edu/) maintains a database of 
     these synsets and assigns each synset a unique ID, i.e. label.
 3. These synset labels are used to label the images in ImageNet.
+
+### Images
+- 1,283,166 images are in the training set.
+  -  _Most_ concepts, i.e. synsets, are represented by 1300 images.
+- 50,000 images are in the validation set.
+  -  _All_ concepts, i.e. synsets, are represented by 50 images.
+- 1,000 synsets are used to label the images.
 
 ### More Information
 See the dataset [summary and statistics](http://image-net.org/about-stats).

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2016 Google Inc. All Rights Reserved.
+# Copyright 2018 Ravi Sojitra. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,6 +51,7 @@ sort_validation_set.py \
 
 # Optional: Create TFRecords
 mkdir ilsvrc2012/tfrecords
+
 python3.6 build_tf_records.py \
   --train_directory=ilsvrc2012/training_images/ \
   --validation_directory=ilsvrc2012/validation_images/ \
