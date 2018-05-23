@@ -3,6 +3,14 @@ As of 2018,
  this has been the same dataset used for the annual ILSVRC 
  object localization challenge since 2012.
 
+The scripts and input files listed below make it a lot easier to 
+ download, extract, and build the dataset in a useful format, 
+ so you can focus on actual research.
+Most of them were provided in some form by Google, Inc. in their 
+ [Inception model repository](https://github.com/tensorflow/models/tree/master/research/inception/inception/data), 
+ even though I fixed a few of their broken scripts and rewrote or renamed 
+ others.
+
 ## Dependencies
 - Linux Ubuntu 16.04
 - python3.6
@@ -106,13 +114,6 @@ Example:
    ```
 
 ## Project Structure
-The scripts and input files listed below make it a lot easier to 
- download, extract, and build the dataset in a useful format, 
- so you can focus on actual research.
-Most of them were provided by Google, Inc. in their 
- [Inception model repository](https://github.com/tensorflow/models/tree/master/research/inception/inception/data), 
- even though I fixed a few of their broken scripts and rewrote or renamed 
- others for readability and maintainability.
 
 ### Scripts
 1. `download_and_uncompress.sh`:
