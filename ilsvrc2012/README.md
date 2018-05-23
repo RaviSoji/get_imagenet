@@ -87,14 +87,13 @@ Example:
      unique_synsets.txt \
      ./
    ```
-5. Rearrange the validation set directory to match the training set.
+5. Rearrange the validation set directory to match the training set directory.
    ``` shell
    ./sort_validation_set.py \
      ilsvrc2012/validation_images/ \
      validation_synset_labels.txt
    ```
-6. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
-    with all the bounding box data.
+6. Extract & save bounding box data to a CSV called `bounding_boxes.csv`.
    ``` shell
    ./get_bounding_boxes.py \
      ilsvrc2012/training_bounding_boxes/ \
