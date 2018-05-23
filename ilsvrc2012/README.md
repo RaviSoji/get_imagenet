@@ -153,7 +153,7 @@ Together, the scripts create a directory called `ilsvrc2012/` at the
 - `ilsvrc2012/validation_images/`
 - `ilsvrc2012/training_bounding_boxes/`
 - `ilsvrc2012/tfrecords/`
-- `ilsvrc2012/training_bbox_annotations.tar.gz`
+- `ilsvrc2012/training_bounding_boxes.tar.gz`
 - `ilsvrc2012/training_images.tar`
 - `ilsvrc2012/validation_images.tar`
 - `bounding_boxes.csv`
