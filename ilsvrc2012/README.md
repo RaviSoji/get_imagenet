@@ -3,6 +3,13 @@ Note: As of 2018,
        this has been the same dataset used for the annual ILSVRC 
        object localization challenge since 2012.
 
+## Software Dependencies
+- python3.6
+- tar
+- wget
+- TensorFlow1.7.0 (optional: only necessary for creating TFRecords)
+  - I have only tested the script with TensorFlow1.7.0.
+
 ## Dataset Overview
 
 ### Images
@@ -32,8 +39,12 @@ See the dataset [summary and statistics](http://image-net.org/about-stats).
    ```
    cd get_imagenet/
    ```
-2. Set the environment variables with your username and access key
+2. Set the environment variables with your ImageNet username and access key.
+    If you do not set these, the `download_and_uncompress.sh` script will
+    prompt you to enter these on the command line.
    ```
+   IMAGENET_USERNAME=...  # Replace ... with the username.
+   IMAGENET_ACCESS_KEY=...  # Replace ... with the access key.
    ```
 3. Download and uncompress the training and validation images into of
     `./ilsvrc2012/`.
