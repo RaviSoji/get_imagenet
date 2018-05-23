@@ -41,8 +41,8 @@ fi
   unique_synsets.txt \
   ./
 
-sort_validation_set.py \
-  lsvrc2012/validation_images/ \
+./sort_validation_set.py \
+  ilsvrc2012/validation_images/ \
   validation_synset_labels.txt
 
 ./get_bounding_boxes.py \

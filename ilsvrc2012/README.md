@@ -81,8 +81,8 @@ Example:
    ```
 5. Rearrange the validation set directory to match the training set.
    ``` shell
-   sort_validation_set.py \
-     lsvrc2012/validation_images/ \
+   ./sort_validation_set.py \
+     ilsvrc2012/validation_images/ \
      validation_synset_labels.txt
    ```
 6. Extract & save bounding box data to a CSV called `bounding_boxes.csv` 
